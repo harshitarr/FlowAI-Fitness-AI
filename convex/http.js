@@ -2,11 +2,12 @@ const { httpRouter } = require("convex/server");
 const { Webhook } = require("svix");
 const { api } = require("./_generated/api");
 const { httpAction } = require("./_generated/server");
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+const Groq = require("groq-sdk");
 
 const http = httpRouter();
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+// <--- Initialize Groq 
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 http.route({
   path: "/clerk-webhook",
@@ -142,7 +143,7 @@ http.route({
 
       // ✅ Get clerkId from the most recent active user session
       const currentUser = await ctx.runQuery(api.sessions.getCurrentVapiUser);
-      
+
       if (!currentUser) {
         return new Response(
           JSON.stringify({
@@ -157,10 +158,10 @@ http.route({
       console.log("Using dynamic clerkId from active session:", clerkId);
 
       // ✅ Verify user exists in database
-      const existingUser = await ctx.runQuery(api.users.getUserByClerkId, { 
-        clerkId: clerkId 
+      const existingUser = await ctx.runQuery(api.users.getUserByClerkId, {
+        clerkId: clerkId
       });
-      
+
       if (!existingUser) {
         console.error("User not found in database for clerkId:", clerkId);
         return new Response(
@@ -174,14 +175,8 @@ http.route({
 
       console.log("User found in database:", existingUser);
 
-      const model = genAI.getGenerativeModel({
-        model: "gemini-2.0-flash-001",
-        generationConfig: {
-          temperature: 0.4,
-          topP: 0.9,
-          responseMimeType: "application/json",
-        },
-      });
+      // <--- Select Groq Model (Env var or fallback)
+      const modelId = process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
 
       const workoutPrompt = `You are an experienced fitness coach creating a personalized workout plan based on:
       Age: ${age}
@@ -228,8 +223,16 @@ http.route({
       DO NOT add any fields that are not in this example. Your response must be a valid JSON object with no additional text.`;
 
       console.log("Generating workout plan...");
-      const workoutResult = await model.generateContent(workoutPrompt);
-      const workoutPlanText = workoutResult.response.text();
+      
+      // <--- Updated to Groq API Call
+      const workoutCompletion = await groq.chat.completions.create({
+        messages: [{ role: "user", content: workoutPrompt }],
+        model: modelId,
+        response_format: { type: "json_object" }, // Ensures strictly valid JSON
+        temperature: 0.4,
+      });
+
+      const workoutPlanText = workoutCompletion.choices[0]?.message?.content || "{}";
 
       // VALIDATE THE INPUT COMING FROM AI
       let workoutPlan = JSON.parse(workoutPlanText);
@@ -275,8 +278,16 @@ http.route({
         DO NOT add any fields that are not in this example. Your response must be a valid JSON object with no additional text.`;
 
       console.log("Generating diet plan...");
-      const dietResult = await model.generateContent(dietPrompt);
-      const dietPlanText = dietResult.response.text();
+      
+      // <--- Updated to Groq API Call
+      const dietCompletion = await groq.chat.completions.create({
+        messages: [{ role: "user", content: dietPrompt }],
+        model: modelId,
+        response_format: { type: "json_object" }, // Ensures strictly valid JSON
+        temperature: 0.4,
+      });
+
+      const dietPlanText = dietCompletion.choices[0]?.message?.content || "{}";
 
       // VALIDATE THE INPUT COMING FROM AI
       let dietPlan = JSON.parse(dietPlanText);

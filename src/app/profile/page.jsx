@@ -110,26 +110,28 @@ const ProfilePage = () => {
             {/* Plan Selection Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               {allPlans.map((plan) => (
-                <div
-                  key={plan._id}
-                  onClick={() => setSelectedPlanId(plan._id)}
-                  className={`
-                    relative group cursor-pointer p-4 rounded-lg transition-all duration-300 hover:shadow-md
-                    ${
-                      selectedPlanId === plan._id
-                        ? "bg-gradient-to-br from-primary/20 to-primary/10 border-2 border-primary shadow-md"
-                        : "bg-gradient-to-br from-background/80 to-background/40 border border-border/50 hover:border-primary/30"
-                    }
-                  `}
-                >
+                  <div
+                    key={plan._id}
+                    onClick={() => setSelectedPlanId(plan._id)}
+                    className={`
+                      relative group cursor-pointer p-4 rounded-lg transition-all duration-300 hover:shadow-md
+                      ${
+                        selectedPlanId === plan._id
+                          ? "bg-gradient-to-br from-primary/20 to-primary/10 border-2 border-primary shadow-md"
+                          : "bg-gradient-to-br from-background/80 to-background/40 border border-border/50 hover:border-primary/30"
+                      }
+                      w-full min-w-[220px] max-w-full sm:max-w-[340px] mx-auto
+                    `}
+                    style={{boxSizing: 'border-box'}}
+                  >
                   {/* Plan Status Badge */}
                   {plan.isActive && (
-                    <div className="absolute -top-1 -right-1 bg-gradient-to-r from-green-500 to-green-400 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
-                      <div className="flex items-center gap-1">
-                        <CheckCircle2Icon className="w-2 h-2" />
-                        ACTIVE
+                      <div className="absolute -top-1 -right-1 bg-gradient-to-r from-green-200 to-green-100 text-green-900 text-xs font-semibold px-2 py-1 rounded-full shadow-sm border border-green-200" style={{letterSpacing: '0.04em'}}>
+                        <div className="flex items-center gap-1">
+                          <CheckCircle2Icon className="w-2 h-2 text-green-500" />
+                          Active
+                        </div>
                       </div>
-                    </div>
                   )}
 
                   {/* Plan Content */}
@@ -170,29 +172,29 @@ const ProfilePage = () => {
 
               {/* Plan Header */}
               <div className="relative p-6 bg-gradient-to-r from-primary/10 to-primary/5 border-b border-border/30">
-                <div className="flex items-center justify-between">
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <div className="space-y-1 w-full sm:w-auto">
+                    <div className="flex flex-wrap items-center gap-2">
                       <div className="w-3 h-3 rounded-full bg-primary animate-pulse"></div>
-                      <h3 className="text-xl font-bold text-foreground">
+                      <h3 className="text-xl font-bold text-foreground break-words max-w-[90vw] sm:max-w-none">
                         {currentPlan.name}
                       </h3>
                       {currentPlan.isActive && (
-                        <div className="bg-green-500/20 text-green-500 text-xs font-bold px-2 py-1 rounded-full">
-                          ACTIVE PLAN
+                        <div className="bg-gradient-to-r from-green-200 to-green-100 text-green-900 text-xs font-semibold px-2 py-1 rounded-full shadow-sm border border-green-200" style={{letterSpacing: '0.04em'}}>
+                          Active Plan
                         </div>
                       )}
                     </div>
-                    <p className="text-sm text-muted-foreground">Your personalized fitness and nutrition program</p>
+                    <p className="text-sm text-muted-foreground break-words max-w-[90vw] sm:max-w-none">Your personalized fitness and nutrition program</p>
                   </div>
 
                   {/* Plan Stats */}
-                  <div className="flex gap-3">
-                    <div className="text-center p-3 bg-background/50 rounded-lg border border-border/50">
+                  <div className="flex gap-2 flex-wrap w-full sm:w-auto justify-start sm:justify-end">
+                    <div className="text-center p-3 bg-background/50 rounded-lg border border-border/50 min-w-[100px] flex-1 sm:flex-none">
                       <TrendingUpIcon className="w-4 h-4 text-primary mx-auto mb-1" />
                       <div className="font-mono text-xs text-muted-foreground">Progress</div>
                     </div>
-                    <div className="text-center p-3 bg-background/50 rounded-lg border border-border/50">
+                    <div className="text-center p-3 bg-background/50 rounded-lg border border-border/50 min-w-[100px] flex-1 sm:flex-none">
                       <TargetIcon className="w-4 h-4 text-green-500 mx-auto mb-1" />
                       <div className="font-mono text-xs text-muted-foreground">Goals</div>
                     </div>
