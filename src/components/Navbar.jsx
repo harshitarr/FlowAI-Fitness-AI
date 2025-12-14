@@ -134,8 +134,9 @@ const Navbar = () => {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="md:hidden bg-background/90 backdrop-blur-md border-t border-border px-4 py-4 space-y-4"
+            className="md:hidden bg-background/90 backdrop-blur-md border-t border-border px-4 py-4"
           >
+            <div className="flex flex-col items-center justify-center space-y-4">
             {isSignedIn ? (
               <>
                 <Link
@@ -204,6 +205,7 @@ const Navbar = () => {
                 </SignUpButton>
               </>
             )}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
