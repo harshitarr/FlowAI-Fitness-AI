@@ -28,6 +28,7 @@ FlowAI is an intelligent fitness platform that blends AI-powered personalization
 - ESLint
 
 
+
 ## ⭐ Features
 
 - AI-powered program and meal plan generation (VAPI / Google Generative API integration)
@@ -35,6 +36,17 @@ FlowAI is an intelligent fitness platform that blends AI-powered personalization
 - Serverless data storage and functions (Convex)
 - Responsive, Tailwind-based UI with accessible components
 - Program gallery, profile, and generate flow
+
+## 📸 Screenshots
+
+Add your screenshots below to showcase the app UI and features. Example:
+
+```
+![Home Page](./screenshots/home.png)
+![Mobile Navbar](./screenshots/mobile-navbar.png)
+```
+
+Create a `screenshots` folder in the project root and place your images there. Then reference them as shown above.
 
 
 
