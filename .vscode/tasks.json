@@ -5,6 +5,11 @@
 			"label": "Build Next.js app after upgrade",
 			"type": "shell",
 			"command": "npm run build"
+		},
+		{
+			"label": "Rebuild app after Clerk upgrade",
+			"type": "shell",
+			"command": "npm run build"
 		}
 	]
 }

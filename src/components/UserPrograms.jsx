@@ -71,7 +71,7 @@ const UserPrograms = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CT Section */}
       <section className="py-24 px-8 bg-secondary">
         {" "}
         {/* Used 'bg-secondary' from your theme for the light blue bg */}
