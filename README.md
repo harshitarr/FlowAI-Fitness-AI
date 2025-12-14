@@ -6,6 +6,7 @@ FlowAI is an intelligent fitness platform that blends AI-powered personalization
 
 ## ⭐ Table of contents
 
+- [Screenshots](#screenshots)
 - [Tech stack](#tech-stack)
 - [Features](#features)
 - [Quick start (development)](#quick-start-development)
@@ -14,6 +15,14 @@ FlowAI is an intelligent fitness platform that blends AI-powered personalization
 - [Project structure (important files)](#project-structure-important-files)
 - [Convex & Clerk notes](#convex--clerk-notes)
 - [Deployment](#deployment)
+
+
+## 📸 Screenshots
+**Home Page**
+![Home Page](https://github.com/harshitarr/FlowAI-Fitness-AI/blob/main/public/hero1.png)
+
+**AI Interaction**
+![Mobile Navbar](https://github.com/harshitarr/FlowAI-Fitness-AI/blob/main/public/hero2.png)
 
 
 ## ⭐ Tech stack
@@ -27,12 +36,7 @@ FlowAI is an intelligent fitness platform that blends AI-powered personalization
 - VAPI (@vapi-ai/web) and Google Generative AI client (AI integrations)
 - ESLint
 
-## 📸 Screenshots
-**Home Page**
-![Home Page](https://github.com/harshitarr/FlowAI-Fitness-AI/blob/main/public/hero1.png)
 
-**AI Interaction**
-![Mobile Navbar](https://github.com/harshitarr/FlowAI-Fitness-AI/blob/main/public/hero2.png)
 
 
 
