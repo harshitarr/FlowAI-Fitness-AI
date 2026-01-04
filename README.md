@@ -1,4 +1,4 @@
-# FlowAI (FitnessAI) 
+# FlowAI (Personalized AI-Powered Full-Stack Fitness & Nutrition Platform) 
 
 
 FlowAI is an intelligent fitness platform that blends AI-powered personalization with a clean, modern experience. Built using Next.js and Convex, it delivers tailored workout programs, meal plans, and goal-based recommendations generated through advanced AI models. With seamless Clerk authentication, real-time database functions, and a polished UI powered by Tailwind and Framer Motion, FlowAI offers a smooth end-to-end fitness journey — from signing in, to generating plans, to tracking your progress.
